@@ -15,12 +15,35 @@
 				text-decoration: none;
 				color:white;
 			}
+			.login a{
+				text-decoration: none;
+				color:white;
+			}
+			.login a:hover{
+				text-decoration: underline;
+			}
 		</style>	
 </head>
 
-<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-		<span class="logo"><a href="/home">mudi</a></span>
-		<span class="mt-3">login</span>
+<div th:fragment="logo">
+		<div class="row">
+			<div class="col logo-container mb-3 p-3 d-flex justify-content-between">
+				<span class="ms-2 logo"><a href="/home">mudi</a></span>
+				<span class="me-2 login mt-3">
+					<a href="/login" sec:authorize="!isAuthenticated()">login</a>
+					<a onclick="document.querySelector('#form-login').submit()" href="#" sec:authorize="isAuthenticated()">logout</a>
+					<form id="form-login" method="post" th:action="@{/logout}"></form>
+				</span>
+			</div>
+		</div>
+		<div class="row mb-3" sec:authorize="isAuthenticated()">
+			<div class="col">
+			<nav class="nav">
+				<a class="nav-link" th:href="@{/home}">Home</a> 
+				<a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a> 
+			</nav>
+		</div>
+		</div>
 </div>
 
 <div th:fragment="titulo(valor)" class="container-fluid bg-body-secondary p-5">
