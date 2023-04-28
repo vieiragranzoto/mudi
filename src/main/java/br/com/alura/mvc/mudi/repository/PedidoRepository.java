@@ -2,6 +2,8 @@ package br.com.alura.mvc.mudi.repository;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +17,8 @@ public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 
 	public List<Pedido> findAll();
 
-	public List<Pedido> findByStatus(StatusPedido aguardando);
+	@Cacheable("pedidos")
+	public List<Pedido> findByStatus(StatusPedido aguardando, Pageable sort);
 
 	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username= :username")
 	public List<Pedido> findAllByUsuario(@Param("username")String username);
