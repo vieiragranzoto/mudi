@@ -3,7 +3,7 @@
 <body>
 	<div th:replace="~{base :: logo}"></div>
 	<div class="container">
-		<div th:replace="base :: titulo('Login')"></div>
+		<div th:replace="~{base :: titulo('Login')}"></div>
 		<div class="card mt-3">
 			<form th:action="@{/login}" class="card-body" method="post">
 				<div class="mb-3">

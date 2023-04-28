@@ -3,7 +3,7 @@
 	<body>
 		<div th:replace="~{base :: logo}"></div>
 		<div class="container">
-			<div th:replace="base :: titulo('Últimos Pedidos')"></div>
+			<div th:replace="~{base :: titulo('Últimos Pedidos')}"></div>
 			<div class="mt-3 card" th:each="pedido : ${pedidos}">
 				<div class="card-header alert alert-dark" th:text=${pedido.nome}>Nome do Produto</div>
 				<div class="card-body">
