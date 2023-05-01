@@ -26,7 +26,7 @@
 </head>
 
 <div th:fragment="logo">
-		<div class="row">
+		<div>
 			<div class="col logo-container mb-3 p-3 d-flex justify-content-between">
 				<span class="ms-2 logo"><a href="/home">mudi</a></span>
 				<span class="me-2 login mt-3">
@@ -36,11 +36,12 @@
 				</span>
 			</div>
 		</div>
-		<div class="row mb-3" sec:authorize="isAuthenticated()">
+		<div class="mb-3" sec:authorize="isAuthenticated()">
 			<div class="col">
 			<nav class="nav">
 				<a class="nav-link" th:href="@{/home}">Home</a> 
 				<a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a> 
+				<a class="nav-link" th:href="@{/oferta}">Faça sua Oferta</a> 
 			</nav>
 		</div>
 		</div>
