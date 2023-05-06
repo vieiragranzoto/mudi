@@ -30,7 +30,9 @@
 			<div class="col logo-container mb-3 p-3 d-flex justify-content-between">
 				<span class="ms-2 logo"><a href="/home">mudi</a></span>
 				<span class="me-2 login mt-3">
-					<a href="/login" sec:authorize="!isAuthenticated()">login</a>
+					<a href="/cadastrar" sec:authorize="!isAuthenticated()">Cadastrar</a>
+					<span sec:authorize="!isAuthenticated()">/</span>
+					<a href="/login" sec:authorize="!isAuthenticated()">Logar</a>
 					<a onclick="document.querySelector('#form-login').submit()" href="#" sec:authorize="isAuthenticated()">logout</a>
 					<form id="form-login" method="post" th:action="@{/logout}"></form>
 				</span>

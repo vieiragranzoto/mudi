@@ -3,9 +3,9 @@
 <body>
 	<div th:replace="~{base :: logo}"></div>
 	<div class="container">
-		<div th:replace="~{base :: titulo('Login')}"></div>
+		<div th:replace="~{base :: titulo('Efetuar Cadastro')}"></div>
 		<div class="card mt-3">
-			<form th:action="@{/login}" class="card-body" method="post">
+			<form th:action="@{/cadastro}" class="card-body" method="post">
 				<div class="mb-3">
 					<label class="form-label" for="username">Usuário</label>
 					<input type="text" name="username" class="form-control" placeholder="usuário"/>
@@ -14,7 +14,7 @@
 					<label class="form-label" for="password">Senha</label>
 					<input type="password" class="form-control" name="password" placeholder="senha" />
 				</div>
-				<button class="btn btn-primary" type="submit">Logar</button>
+				<button class="btn btn-primary" type="submit">Cadastrar</button>
 			</form>
 		</div>
 	</div>
