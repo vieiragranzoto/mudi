@@ -17,8 +17,11 @@ public interface PedidoRepository extends CrudRepository<Pedido, Long>{
 
 	public List<Pedido> findAll();
 
-	@Cacheable("pedidos")
+	//@Cacheable("pedidos")
 	public List<Pedido> findByStatus(StatusPedido aguardando, Pageable sort);
+	
+	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username <> :username and p.status = :status")
+	public List<Pedido> findByStatusNaoUsuario(@Param("status")StatusPedido aguardando, @Param("username")String username, Pageable sort);
 
 	@Query("SELECT p FROM Pedido p JOIN p.user u WHERE u.username= :username")
 	public List<Pedido> findAllByUsuario(@Param("username")String username);

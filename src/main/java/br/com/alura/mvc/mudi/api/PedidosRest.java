@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,8 @@ public class PedidosRest {
 		Sort sort = Sort.by("id").descending();
 		PageRequest paginacao = PageRequest.of(0, 10, sort);
 		
-		return pedidoRepository.findByStatus(StatusPedido.AGUARDANDO, paginacao);
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		
+		return pedidoRepository.findByStatusNaoUsuario(StatusPedido.AGUARDANDO, username, paginacao);
 	}
 }
