@@ -41,7 +41,7 @@ public class Pedido {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private User user;
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido",fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido",fetch = FetchType.EAGER)
 	private List<Oferta> ofertas;
 	
 	public String getNome() {
