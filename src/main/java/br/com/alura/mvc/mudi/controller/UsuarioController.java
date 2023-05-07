@@ -1,6 +1,7 @@
 package br.com.alura.mvc.mudi.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.alura.mvc.mudi.model.Oferta;
 import br.com.alura.mvc.mudi.model.Pedido;
 import br.com.alura.mvc.mudi.model.StatusPedido;
 import br.com.alura.mvc.mudi.repository.PedidoRepository;
@@ -39,6 +41,15 @@ public class UsuarioController {
 		model.addAttribute("pedidos", pedidos);
 		model.addAttribute("status", status);
 		return "usuario/home";
+	}
+
+	@GetMapping("pedido-ofertado")
+	public String pedidoOfertado(Model model, Principal principal) {
+		List<Pedido> pedidos = pedidoRepository.findByStatusEUsuario(StatusPedido.AGUARDANDO, principal.getName());
+		List<Oferta> ofertas = new ArrayList<>();
+		pedidos.forEach(pedido-> ofertas.addAll(pedido.getOfertas()));
+		model.addAttribute("ofertas", ofertas);
+		return "usuario/pedido-ofertado";
 	}
 	
 	@ExceptionHandler(IllegalArgumentException.class)

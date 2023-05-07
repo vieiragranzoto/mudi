@@ -23,8 +23,11 @@ public class Oferta {
 	private LocalDate dataDaEntrega;
 	private String comentario;
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Pedido pedido;
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 	
 	public Long getId() {
 		return id;
@@ -55,6 +58,12 @@ public class Oferta {
 	}
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

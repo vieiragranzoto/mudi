@@ -11,6 +11,7 @@ import jakarta.validation.constraints.Pattern;
 public class RequisicaoNovaOferta {
 
 	private Long pedidoId;
+	private String username;
 	@Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
 	@NotNull
 	private String valor;
@@ -25,6 +26,12 @@ public class RequisicaoNovaOferta {
 	}
 	public void setPedidoId(Long pedidoId) {
 		this.pedidoId = pedidoId;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getValor() {
 		return valor;
