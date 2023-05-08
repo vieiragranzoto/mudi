@@ -7,9 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.User.UserBuilder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -33,7 +30,7 @@ public class WebSecurityConfig {
 		.authenticated()
 		.and()
 		.formLogin((form) -> form.loginPage("/login")
-					.defaultSuccessUrl("/usuario/pedido", true)
+					.defaultSuccessUrl("/usuario/pedido/home", true)
 					.permitAll())
 		.logout(logout -> logout.logoutUrl("/logout")
 				 .logoutSuccessUrl("/home"))

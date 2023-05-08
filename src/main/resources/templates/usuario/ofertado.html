@@ -3,7 +3,7 @@
 	<body>
 		<div th:replace="~{base :: logo}"></div>
 		<div class="container" th:with="status=${'ofertado'}">
-			<div th:replace="~{base :: titulo('Meus Pedidos Ofertados')}"></div>
+			<div th:replace="~{base :: titulo('Meus Pedidos')}"></div>
 			<div th:replace="~{base :: status}"></div>
 			<div class="card mt-3" th:each="oferta : ${ofertas}">
 				<div class="card-header alert alert-primary" th:text=${oferta.pedido.nome}>Nome do Produto</div>
@@ -16,7 +16,7 @@
 								</div>
 								<div class="mt-3">Comentário</div>
 								<div><textarea disabled="disabled" class="form-control" th:text=${oferta.comentario}>Comentário da Oferta</textarea></div>
-								<form th:action="@{/oferta/aprovada}" method="post">
+								<form th:action="@{/usuario/pedido/aprovar}" method="post">
     								<input type="hidden" name="ofertaId" th:value="${oferta.id}" />
 									<button class="btn btn-primary mt-2">Aceitar Oferta</button>
 								</form>

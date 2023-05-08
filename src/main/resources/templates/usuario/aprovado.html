@@ -1,0 +1,34 @@
+<html>
+	<head th:replace="~{base :: head}"></head>
+	<body>
+		<div th:replace="~{base :: logo}"></div>
+		<div class="container" th:with="status=${'aprovado'}">
+			<div th:replace="~{base :: titulo('Meus Pedidos')}"></div>
+			<div th:replace="~{base :: status}"></div>
+			<div class="card mb-3" th:each="pedido : ${pedidos}">
+					<div class="card-header alert alert-success" th:text=${pedido.nome}>Nome do Produto</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12 col-sm-8 mb-3">
+							<div class="row">
+								<div class="col-md-5">Valor: <span th:if="${pedido.valor} !=null" th:text="${#numbers.formatDecimal(pedido.valor,1,'POINT',2,'COMMA')}">200,9</span></div>
+								<div class="col-md-7">Data da entrega: <span th:if="${pedido.dataDaEntrega} !=null" th:text="${#temporals.format(pedido.dataDaEntrega,'dd/MM/yyyy')}">30/03/2023</span></div>
+							</div>
+							<div>Produto</div>
+							<div><input class="form-control" th:value=${pedido.urlProduto} value="url do produto" /></div>
+							<div>Descrição</div>
+							<div><textarea class="form-control" th:text=${pedido.descricao}>descrição de pedido</textarea></div>
+							<form th:action="@{/usuario/pedido/recebido}" method="post">
+    								<input type="hidden" name="pedidoId" th:value="${pedido.id}" />
+									<button class="btn btn-primary mt-2">Confirmar Entrega</button>
+								</form>
+						</div>
+						<div class="col-12 col-sm-4">
+							<div><img class="img-thumbnail" th:src="${pedido.urlImagem}" src="" /></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
