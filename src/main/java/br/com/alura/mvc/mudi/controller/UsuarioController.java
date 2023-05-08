@@ -64,6 +64,8 @@ public class UsuarioController {
 		if(oferta != null) {
 			Pedido pedido = oferta.getPedido();
 			pedido.setStatus(StatusPedido.APROVADO);
+			pedido.setDataDaEntrega(oferta.getDataDaEntrega());
+			pedido.setValor(oferta.getValor());
 			pedidoRepository.save(pedido);
 		}
 		return "redirect:/usuario/pedido/aprovado";
